@@ -100,8 +100,11 @@ $("#goalcolor").css("color", "#fff");
       </div>
     </div>
     <div class="box">
-      <h3>ポートフォリオ</h3>
-      <a href="new"><input type="button" value="新規" class="btn btn-primary" ></a><br><br>
+      <div class="headline">
+        ポートフォリオ作成履歴
+      <br>
+      <br>
+         <a href="new"><input type="button" value="新規" class="btn btn-primary" ></a>
         {% for date, portlist in zipped %}
         <h4>
           <p>{{date}}</p>
@@ -113,6 +116,7 @@ $("#goalcolor").css("color", "#fff");
         </h4>
         <hr>
         {% endfor %}
+      </div>
     </div>
 </div>
 {% endblock %}

@@ -113,8 +113,8 @@ small{
 	float: right;
 }
 */
-/*top.htmlでつかってるよ*/
-#top{
+/*見出し*/
+.headline{
 	padding: 20px 0 0 20px;
 	font-size: 25px;
 	font-weight: bold;

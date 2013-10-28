@@ -100,7 +100,7 @@ $("#goalcolor").css("color", "#fff");
       </div>
     </div>
     <div class="box">
-      <h3>フォルダ作成</h3>
+      <div class="headline">フォルダ作成<br>
         <form action="" method=post enctype=multipart/form-data>
         <p><input type="text" name=directoryname>
 	      <input type=submit value=作成 class="btn btn-secondry">
@@ -116,6 +116,7 @@ $("#goalcolor").css("color", "#fff");
         <br>
         <i class="icon-file"></i><a href={{"/view_file/"+dirpath+fileurl}} target="_blank">{{filedisplay}}<a>
       {% endfor %}
+    </div>
     </div>
   </div>
 {% endblock %}
