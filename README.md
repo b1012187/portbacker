@@ -30,19 +30,10 @@ $ python portfolio.py
 * → もし起動しない場合は上記のインストールに不備がある
 * ブラウザでlocalhost:5000に接続
 
-##wiki
+## wiki
 [wiki](https://github.com/ICTKyouikukei2013/portbacker/wiki "wiki")
 
-## データ構造
+### データ構造
 [データ構造](https://github.com/ICTKyouikukei2013/portbacker/wiki/%E3%83%87%E3%83%BC%E3%82%BF%E6%A7%8B%E9%80%A0 "データ構造")
 
-```javascript
-{"public": boolean, "owner": "string", "text": "string"}
-```
 
-### ゴール
-collection名 goals
-
-```javascript
-{"username": "string", "goal_text": "string"}
-```
