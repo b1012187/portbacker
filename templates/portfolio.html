@@ -29,7 +29,7 @@ $("#goalcolor").css("color", "#fff");
 /*mouseover*/
   /*ポートフォリオ*/
   $("li#Top").mouseover(function(){
-    $("#Top").css("backgroundColor","#dcdcdc");
+    $("#Top").css("backgroundColor","#c0c0c0");
     $("#topcolor").css("color", "#666");
   });
   $("li#Top").mouseout(function(){
@@ -39,7 +39,7 @@ $("#goalcolor").css("color", "#fff");
 
   /*成果物管理*/
   $("li#Artifact").mouseover(function(){
-    $("#Artifact").css("backgroundColor","#dcdcdc");
+    $("#Artifact").css("backgroundColor","#c0c0c0");
     $("#artcolor").css("color", "#666");
   });
   $("li#Artifact").mouseout(function(){
@@ -49,7 +49,7 @@ $("#goalcolor").css("color", "#fff");
 
   /*個人日誌*/
   $("li#Personal").mouseover(function(){
-    $("#Personal").css("backgroundColor","#dcdcdc");
+    $("#Personal").css("backgroundColor","#c0c0c0");
     $("#perscolor").css("color", "#666");
   });
   $("li#Personal").mouseout(function(){
@@ -59,7 +59,7 @@ $("#goalcolor").css("color", "#fff");
 
   /*ゴール*/
   $("li#Goal").mouseover(function(){
-    $("#Goal").css("backgroundColor","#dcdcdc");
+    $("#Goal").css("backgroundColor","#c0c0c0");
     $("#goalcolor").css("color", "#666");
   });
   $("li#Goal").mouseout(function(){
@@ -100,8 +100,11 @@ $("#goalcolor").css("color", "#fff");
       </div>
     </div>
     <div class="box">
-      <h3>ポートフォリオ</h3>
-      <a href="new"><input type="button" value="新規" class="btn btn-primary" ></a><br><br>
+      <div class="headline">
+        ポートフォリオ作成履歴
+      <br>
+      <br>
+         <a href="new"><input type="button" value="新規" class="btn btn-primary" ></a>
         {% for date, portlist in zipped %}
         <h4>
           <p>{{date}}</p>
@@ -113,6 +116,7 @@ $("#goalcolor").css("color", "#fff");
         </h4>
         <hr>
         {% endfor %}
+      </div>
     </div>
 </div>
 {% endblock %}

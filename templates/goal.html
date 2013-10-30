@@ -29,7 +29,7 @@ $("#goalcolor").css("color", "#666");
 /*mouseover*/
   /*トップ*/
   $("li#Top").mouseover(function(){
-    $("#Top").css("backgroundColor","#dcdcdc");
+    $("#Top").css("backgroundColor","#c0c0c0");
     $("#topcolor").css("color", "#666");
   });
   $("li#Top").mouseout(function(){
@@ -38,7 +38,7 @@ $("#goalcolor").css("color", "#666");
   });
   /*ポートフォリオ*/
   $("li#Portfolio").mouseover(function(){
-    $("#Portfolio").css("backgroundColor","#dcdcdc");
+    $("#Portfolio").css("backgroundColor","#c0c0c0");
     $("#portcolor").css("color", "#666");
   });
   $("li#Portfolio").mouseout(function(){
@@ -48,7 +48,7 @@ $("#goalcolor").css("color", "#666");
 
   /*成果物管理*/
   $("li#Artifact").mouseover(function(){
-    $("#Artifact").css("backgroundColor","#dcdcdc");
+    $("#Artifact").css("backgroundColor","#c0c0c0");
     $("#artcolor").css("color", "#666");
   });
   $("li#Artifact").mouseout(function(){
@@ -58,7 +58,7 @@ $("#goalcolor").css("color", "#666");
 
   /*個人日誌*/
   $("li#Personal").mouseover(function(){
-    $("#Personal").css("backgroundColor","#dcdcdc");
+    $("#Personal").css("backgroundColor","#c0c0c0");
     $("#perscolor").css("color", "#666");
   });
   $("li#Personal").mouseout(function(){
@@ -100,7 +100,7 @@ $("#goalcolor").css("color", "#666");
     </div>
     <div class="box">
       <form method="post" action="/goal">
-	<h3>ゴール設定</h3>
+	<div class="headline">ゴール設定<br>
 	<input type="text" name="goal_text" style="width:250px;"/>
 	<input type="submit" name="button" class="btn btn-primary" value="新規作成">
       </form>
@@ -112,6 +112,7 @@ $("#goalcolor").css("color", "#666");
 	<input type="submit" name="button" class="btn btn-secondly" value="削除"/>
       </form>
       {% endfor %}
+    </div>
     </div>
   </div>
 {% endblock %}
