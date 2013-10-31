@@ -101,22 +101,49 @@ $("#goalcolor").css("color", "#fff");
       </div>
     </div>
     <div class="box">
-      <h3>フォルダ作成</h3>
-        <form action="" method=post enctype=multipart/form-data>
-        <p><input type="text" name=directoryname>
-	      <input type=submit value=作成 class="btn btn-secondry">
-      <h3>ファイルのアップロード</h3>
-      	<p><input type="file" name=file>
-	      <input type=submit value=Upload class="btn btn-secondry">
+      <div class="diary">
+        <h4>■個人日誌</h4>
+        <form method="post" action="">
+
+        <div class="input_diary">
+          <textarea name="twitt-text"></textarea>
+          <h5>ゴールを選択</h5>
+          <div class="accordion" id="accordion2">
+            
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                  大きなゴール #1
+                </a>
+              </div>
+              <div id="collapseOne" class="accordion-body collapse">
+                <div class="accordion-inner">
+                  <ul>
+                    <li><input type="radio" name="mini-goal">小さなゴール1</li>
+                    <li><input type="radio" name="mini-goal">小さなゴール2</li>
+                    <li><input type="radio" name="mini-goal">小さなゴール3</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div align="right">
+            <input type="submit" value="入力" class="btn btn-primary" style="margin-top: -2em;">
+          </div>
         </form>
-      {% for dirdisplay, dirurl in dir %}
-        <br>
-        <i class="icon-folder-close"></i><a href={{"/artifact/"+dirpath+dirurl}}>{{dirdisplay}}<a>
-	    {% endfor %}
-      {% for filedisplay, fileurl in ls %}
-        <br>
-        <i class="icon-file"></i><a href={{"/view_file/"+dirpath+fileurl}} target="_blank">{{filedisplay}}<a>
-      {% endfor %}
+        </div>
+      </div>
+
+      <div class="twitt">
+        <h4>つぶやき</h4>
+
+        <div class="twitt-box">
+          <div class="date">2013/10/31</div>
+          <div class="content">てんてかてｆｋじゃｓｄｆｋぁｊｓｄｆ；あｓｄｋｌｆじゃｓｄ；ｆｋぁｊｆ；ｌｄｋさｊｆｄ；さｋｆｌｊｄ；ｓｌｋｆｊさｄ；ｆじゃ；ｓふぁｄｓｆ；</div>
+        </div>
+
+      </div>
     </div>
   </div>
 {% endblock %}
