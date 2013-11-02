@@ -14,6 +14,11 @@ ALLOWED_EXTENSIONS = DOCUMENT_EXTENSIONS.union(IMAGE_EXTENSIONS)
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+app.config['MONGODB_SETTINGS'] = {'DB': 'portbacker'}
+
+from models import db, Goal, PersonalLog
+db.init_app(app)
+
 # set the secret key.  keep this really secret:
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
@@ -104,25 +109,22 @@ def uploaded_file():
 def index_page():
     return render_template_with_username("top.html")
 
-# goal.htmlにリンク
 @app.route('/goal', methods=['GET'])
-def goal_get():
+def show_goals():
     username = session['username']
-    goal_texts = model.get_goal_texts(username)
-    log_texts = model.get_log_texts(username)
-    return render_template_with_username("goal.html", goal_texts= goal_texts, log_texts=log_texts)
+    goals = Goal.objects(username=username)
+    return render_template_with_username("goal.html", goals=goals)
 
-# goal_textの内容を受け取ってgoal.htmlに渡す 菅野：テキストは渡さないでgoal.htmlからdbにアクセスできるようにしました
 @app.route('/goal', methods=['POST'])
-def goal_post():
+def add_goal():
     username = session['username']
     if request.form["button"] == u"新規作成":
         goal_text = request.form['goal_text']
         if goal_text != "":
-            model.insert_goal_text(username, goal_text)
+            Goal(username=username, content=goal_text).save()
     elif request.form["button"] == u"削除":
         rmgoal = request.form['rmgoal']
-        model.remove_goal_text(username, rmgoal)
+        Goal.objects(username=username, content=rmgoal).delete()
     return redirect('/goal')
 
 @app.route('/personallog_post', methods=['POST'])
@@ -131,14 +133,12 @@ def personallog_post():
     if request.form["button"] == u"追加":
         personallog_text = request.form['personallog_text']
         if personallog_text != "":
-            model.insert_log_text(username, personallog_text)
+            PersonalLog(username=username, content=personallog_text).save()
     elif request.form["button"] == u"削除":
         rmlog = request.form['rmgoal']
-        model.remove_log_text(username, rmlog)
-    goal_texts = model.get_goal_texts(username)
-    log_texts = model.get_log_texts(username)
-    return render_template_with_username("goal.html", 
-            goal_texts=goal_texts, log_texts=log_texts)
+        PersonalLog(username=username, content=rmlog).delete()
+    personal_logs = PersonalLog.objects(username=username)
+    return render_template_with_username("goal.html", personal_logs=personal_logs)
 
 @app.route('/portfolio', methods=['GET'])
 def portfolio():
