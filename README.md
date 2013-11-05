@@ -21,13 +21,6 @@
 $ sudo easy_install pymongo
 ```
 
-### flask-mongoengine
-* version 0.8.4
-
-```bash
-$ sudo easy_install flask-mongoengine
-```
-
 ## portfolioシステムの起動の仕方
 
 ```bash

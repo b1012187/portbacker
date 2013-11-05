@@ -100,17 +100,17 @@ $("#goalcolor").css("color", "#666");
     </div>
     <div class="box">
       <form method="post" action="/goal">
-	    <div class="headline">ゴール設定<br>
-	    <input type="text" name="goal_text" style="width:250px;"/>
-	    <input type="submit" name="button" class="btn btn-primary" value="新規作成">
+	<div class="headline">ゴール設定<br>
+	<input type="text" name="goal_text" style="width:250px;"/>
+	<input type="submit" name="button" class="btn btn-primary" value="新規作成">
       </form>
-      <h3>ゴール</h3>
-      {% for goal in goals %}
-        <form method="post" action="/goal">
-	      {{ goal.content }}
-	      <input type="hidden" name="rmgoal" value={{ goal.content }}>
-	      <input type="submit" name="button" class="btn btn-secondly" value="削除"/>
-        </form>
+  <h3>ゴール</h3>
+      {% for goal_text in goal_texts %}
+      <form method="post" action="/goal">
+	{{goal_text}}
+	<input type="hidden" name="rmgoal" value={{goal_text}}>
+	<input type="submit" name="button" class="btn btn-secondly" value="削除"/>
+      </form>
       {% endfor %}
     </div>
     </div>
