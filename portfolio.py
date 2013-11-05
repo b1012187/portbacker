@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
 import urllib
-import sys, os, datetime, itertools, re
+import sys, os, datetime, itertools
 from flask import Flask, session, request, redirect, url_for, render_template , send_from_directory, escape
 #gfrom werkzeug import secure_filename
 
