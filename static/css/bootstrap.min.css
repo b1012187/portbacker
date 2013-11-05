@@ -197,10 +197,10 @@ small{
     padding: 0 0 0 0;
 }
 
-#accordion2 div a:before{
-}
-
-#accordion div a:after{
+.sankaku{
+    transform-origin: middle;
+    transform-origin: center;
+    display: inline-block;
 }
 
 .twitt{
