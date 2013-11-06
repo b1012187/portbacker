@@ -117,20 +117,35 @@ $("#goalcolor").css("color", "#fff");
         <h4>■個人日誌</h4>
         <form method="post" action="">
         <div class="input_diary">
-          <textarea name="item_log_text"></textarea>
+          <textarea name="item_log_text" required></textarea>
           <h5>ゴールを選択</h5>
           <div class="accordion" id="accordion2">
 <!--プルダウンの各項目-->
             <div class="accordion-group">
               <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                  <div class="sankaku">▶</div>xxxx
+                  <div class="sankaku">▶</div>大ゴール
                 </a>
               </div>
-              <div id="collapseOne" class="accordion-body collapse">
+              <div id="collapseOne" class="accordion-body collapse in">
                 <div class="accordion-inner">
                   <ul>
-                    <li><input type="radio" name="goal_item_title" value="小さなゴール1">xxxx</li>
+                    <li><input type="radio" name="goal_item_title" value="小ゴール１" required>小ゴール１</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne2">
+                  <div class="sankaku">▶</div>大ゴール2
+                </a>
+              </div>
+              <div id="collapseOne2" class="accordion-body collapse">
+                <div class="accordion-inner">
+                  <ul>
+                    <li><input type="radio" name="goal_item_title" value="小ゴール2" required>小ゴール2</li>
                   </ul>
                 </div>
               </div>
@@ -147,8 +162,8 @@ $("#goalcolor").css("color", "#fff");
         <h4>つぶやき</h4>
 <!--つぶやき-->
         <div class="twitt-box">
-          <div class="date"></div>
-          <div class="content"></div>
+          <div class="date">x月xx日</div>
+          <div class="content">xxxでxxxがあった。</div>
         </div>
 <!---->
       </div>
