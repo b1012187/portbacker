@@ -214,6 +214,14 @@ def artifact_post():
             dir=[(n, quote(n)) for n in dirlist],
             dirpath="")
 
+@app.route('/person', methods=['POST'])
+def diary_post():
+    return render_template_with_username("person.html");
+
+@app.route('/person', methods=['GET'])
+def diary():
+    return render_template_with_username("person.html");
+
 @app.route('/view_file/<path:filename>', methods=['GET'])
 def view_file(filename):
     return send_from_directory(path_from_sessionuser_root(), filename)

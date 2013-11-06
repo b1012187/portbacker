@@ -164,3 +164,63 @@ small{
 #loginbtn {
 	padding-left: 270px;
 }
+
+/* person,htmlで使ってます */
+.diary{
+    float: left;
+    width: 30%;
+    height: 95%;
+    margin: 10px 10px 0px 10px;
+    border-right: thin solid #000;
+}
+
+.input_diary{
+    background: #c0c0c0;
+    margin:10px 10px 10px 10px;
+    padding:10px 10px 5px 10px;
+}
+
+.input_diary textarea{
+    width: 95%;
+    height: 150px;
+    margin-bottom: 20px
+    resize: none;
+}
+
+.input_diary .accordion-group{
+    margin: 0 0 -5px 0;
+    border: 0px;
+}
+
+.input_diary .accordion-inner{
+    border: 0px;
+    padding: 0 0 0 0;
+}
+
+.sankaku{
+    transform-origin: middle;
+    transform-origin: center;
+    display: inline-block;
+}
+
+.twitt{
+    float: left;
+    width: 65%;
+    margin: 10px 0px 0px 10px;
+    padding-right: 10px;
+    background-color: #dcdcdc;
+}
+
+.twitt-box{
+    background: #c0c0c0;
+    margin:10px 10px 10px 10px;
+    padding:20px 10px 15px 10px;
+}
+
+.twitt-box .date{
+    text-align: right;
+}
+
+.twitt-box .content{
+    margin: 10px 30px 5px 30px;
+}
