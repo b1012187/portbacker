@@ -4,6 +4,7 @@ import urllib
 import sys, os, datetime, itertools
 from flask import Flask, session, request, redirect, url_for, render_template , send_from_directory, escape
 #gfrom werkzeug import secure_filename
+import model
 
 UPLOAD_FOLDER = u'./data'
 DOCUMENT_EXTENSIONS = frozenset(['txt', 'pdf', 'md'])
