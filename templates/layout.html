@@ -19,7 +19,14 @@
           <input type="button" onclick="location.href='/logout'" value="ログアウト" class="btn-mini btn-info">
         </div>
       </div>   
+      <div class="group">
+        <input type="text" name="goal_text" style="width:150px;">
+        <a href onclick="window.open('group.html', '_blank', 'width=300,height=600');">
+          <button type="button">&emsp;+&emsp;</button>
+        </a>
+      </div>
     </div>
+
   {% block body %}
   {% endblock %}
 </body>

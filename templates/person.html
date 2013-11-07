@@ -12,6 +12,10 @@ $(function(){
     Personal.style.backgroundColor = "#dcdcdc";
   var Goal = document.getElementById('Goal');
     Goal.style.backgroundColor = "#888";
+  var date = document.getElementById('date');
+    date.style.color = "#888";
+  var goal = document.getElementById('goal');
+    goal.style.color = "#888";
 
 
 /*タブの移動*/
@@ -75,7 +79,6 @@ $("#goalcolor").css("color", "#fff");
   $("#Personal").css("border-radius","5px 5px 0px 0px");
   $("#Goal").css("border-radius","5px 5px 0px 0px");
  
-
   /*padding*/
   $("#Top").css("padding","5px");
   $("#Portfolio").css("padding","5px");
@@ -88,10 +91,22 @@ $("#goalcolor").css("color", "#fff");
       $('.sankaku').css({WebkitTransform: "rotate(90deg)"});
     }
   });
-  
   $(".accordion-toggle collapsed").click(function(){
       $('.sankaku').css({WebkitTransform: "rotate(-90deg)"});
-    
+  });
+
+  $("#date").mouseover(function(){
+    $("#date").css("color","#000");
+  });
+  $("#date").mouseout(function(){
+    $("#date").css("color", "#888");
+  });
+
+  $("#goal").mouseover(function(){
+    $("#goal").css("color","#000");
+  });
+  $("#goal").mouseout(function(){
+    $("#goal").css("color", "#888");
   });
 
 });
@@ -164,8 +179,8 @@ $("#goalcolor").css("color", "#fff");
 <!--つぶやき-->
         <div class="twibox">
           <div class="sort">
-          ゴール別
-          日付別
+          <a id="date">日付別</a>
+          <a id="goal">ゴール別</a>
           </div>
            <div class="twitt-box">
            <div class="date">10月10日</div>
