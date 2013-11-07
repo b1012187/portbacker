@@ -1,7 +1,3 @@
-$(function(){
-	var naga = document.getElementById('nagasaki');
-//	var kousuke = $(naga).attr("text");
-//	if(kousuke == 1){
-		naga.style.backgroundColor = "black";
-//	}
-});
+function windowopen(){
+	window.open("./group.html", "", "width=300px, height=600px, top=50px, left=600px");
+}
