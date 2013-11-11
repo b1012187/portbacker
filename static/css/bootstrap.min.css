@@ -202,7 +202,15 @@ small{
 .input_diary textarea{
     width: 95%;
     height: 150px;
+<<<<<<< HEAD
     margin-bottom: 20px;
+=======
+<<<<<<< HEAD
+    margin-bottom: 20px
+=======
+    margin-bottom: 20px;
+>>>>>>> 0beecc47fbeb7bd4f43af2ed85a5651635a1c865
+>>>>>>> コンフリクトを修正
     resize: none;
 }
 
@@ -230,6 +238,7 @@ small{
     background-color: #dcdcdc;
 }
 
+<<<<<<< HEAD
 .twibox{
 	width: 620px;
 	height: 600px;
@@ -244,6 +253,27 @@ small{
 
 .twitt-box{
     background: #c0c0c0;	
+=======
+<<<<<<< HEAD
+.twitt-box{
+    background: #c0c0c0;
+=======
+.twibox{
+	width: 620px;
+	height: 600px;
+	margin-top: 10px;
+}
+
+.twibox .sort{
+	font-size: 15px; 
+	font-weight: bold;
+	margin-left: 10px;
+}
+
+.twitt-box{
+    background: #c0c0c0;	
+>>>>>>> 0beecc47fbeb7bd4f43af2ed85a5651635a1c865
+>>>>>>> コンフリクトを修正
     margin:10px 10px 10px 10px;
     padding:20px 10px 15px 10px;
 }
@@ -254,6 +284,7 @@ small{
 
 .twitt-box .content{
     margin: 10px 30px 5px 30px;
+<<<<<<< HEAD
 }
 
 .goal-set{
