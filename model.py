@@ -2,6 +2,7 @@
 
 from pymongo import Connection
 
+
 class Group(object):
     def __init__(self, name, group_id):
         self.name = name
@@ -78,6 +79,9 @@ class User(object):
                 store.append(doc["student_id"])
         return store        
 
+class GoalDuplicationError(ValueError):
+    pass
+
 class Goal(object):
     def __init__(self, student_id, title):
         self.student_id = student_id
@@ -85,6 +89,8 @@ class Goal(object):
         
     def insert(self, db):
         col = db.portfolio_goals
+        if Goal.find(db, self.student_id, self.title) != None:
+            raise GoalDuplicationError()
         col.insert({
             "student_id": self.student_id,
             "title": self.title})
@@ -103,6 +109,9 @@ class Goal(object):
     def delete_all(clz, db):
         db.drop_collection("portfolio_goals")
     
+class GoalItemDuplicationError(ValueError):
+    pass
+
 class GoalItem(object):
     def __init__(self, student_id, link_to_goal, title, change_data, visibility):
         self.student_id = student_id
@@ -113,6 +122,8 @@ class GoalItem(object):
     
     def insert(self, db):
         col = db.portfolio_goal_items
+        if GoalItem.find(db, self.student_id,self.link_to_goal, self.title) != None:
+            raise GoalItemDuplicationError()
         col.insert({
             "student_id": self.student_id,
             "link_to_goal": self.link_to_goal,
@@ -139,23 +150,39 @@ class GoalItem(object):
 
 
 class ItemLog(object):
-    def __init__(self, student_id, link_to_goal, link_to_goal_item, number, creation_date, text):
+    def __init__(self, student_id, link_to_goal, link_to_goal_item, creation_date, text, number=None ):
         self.student_id = student_id
         self.link_to_goal = link_to_goal
         self.link_to_goal_item = link_to_goal_item
-        self.number = number
         self.creation_date = creation_date 
         self.text = text 
+        if number != None:
+            self.number = number
+        else :
+            self.number = None 
+
 
     def insert(self, db):
         col = db.portfolio_item_logs
+        if self.number != None:
+            number = self.number
+        else :
+            docs = col.find({
+               "student_id" : self.student_id})
+            docs = list(docs)
+            max_number = 0
+            for doc in docs:
+                max_number = max(max_number, doc["number"])
+            number = max_number+1
+            
         col.insert({
             "student_id": self.student_id,
             "link_to_goal": self.link_to_goal,
             "link_to_goal_item": self.link_to_goal_item,
-            "number": self.number,
+            "number": number,
             "creation_date" : self.creation_date,
             "text" : self.text })
+        return number
 
     @classmethod
     def find(clz, db, student_id, number):
