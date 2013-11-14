@@ -104,11 +104,27 @@ class Goal(object):
             return None
         doc = docs[0]
         return Goal(doc["student_id"], doc["title"])
-        
+
     @classmethod
     def delete_all(clz, db):
         db.drop_collection("portfolio_goals")
     
+    @classmethod
+    def get(clz, db, student_id):
+        col = db.portfolio_goals
+        docs = col.find({"student_id": student_id})
+        docs = list(docs)
+        if len(docs) == 0:
+            return None
+        else :
+            return [Goal(doc["student_id"], doc["title"]) for doc in docs] 
+
+    @classmethod
+    def remove(clz, db, student_id, title):
+        col = db.portfolio_goals
+        col.remove({"student_id": student_id, "title": title})
+
+
 class GoalItemDuplicationError(ValueError):
     pass
 
@@ -131,7 +147,7 @@ class GoalItem(object):
             "change_data": self.change_data,
             "visibility": self.visibility})
     
-    @classmethod
+    @classmethod 
     def find(clz , db, student_id, link_to_goal, title):
         col = db.portfolio_goal_items
         docs = col.find({
@@ -195,6 +211,21 @@ class ItemLog(object):
             return None
         doc = docs[0]
         return ItemLog(doc["student_id"], doc["link_to_goal"], doc["link_to_goal_item"], doc["number"], doc["creation_date"], doc["text"])
+
+    @classmethod
+    def get(clz, db, student_id):
+        col = db.portfolio_item_logs
+        docs = col.find({"student_id": student_id})
+        docs = list(docs)
+        if len(docs) == 0:
+            return None
+        else :
+            return [ItemLog(doc["student_id"], doc["link_to_goal"], doc["link_to_goal_item"], doc["number"], doc["creation_date"], doc["text"]) for doc in docs] 
+
+    @classmethod
+    def remove(clz, db, student_id, number):
+        col = db.portfolio_item_logs
+        col.remove({"student_id": student_id, "number": number})
 
     @classmethod
     def delete_all(clz, db):
