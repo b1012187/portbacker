@@ -128,9 +128,11 @@ def post_goal():
 def post_goal_item():
     username = session['username']
     if request.form["button_name"] == "make":
-        goal_item_text = request.form["goal_item_title"]
+        goal_item_title = request.form["goal_item_title"]
         goal_title = request.form['goal_title']
-        gi = model.Goal_item(goal_item_title, get_date(), goal_title, True)
+        change_date = datetime.datetime.today()
+        gi = model.Goal_item(goal_item_title, change_date, goal_title, True)
+        gi.insert(model.db)
     return redirect('/goal')
 
 @app.route('/personallog_post', methods=['POST'])
