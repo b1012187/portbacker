@@ -109,7 +109,7 @@ class GoalTest(unittest.TestCase):
         for goal in act:
             self.assertTrue(goal.student_id == "b1012100")
 
-    def test_get_duplication(self):
+    def test_get_false(self):
         db = Connection('localhost', 27017).testdata
         model.Goal.delete_all(db)
         g1 = model.Goal("b1012100", "text title")
@@ -126,7 +126,7 @@ class GoalTest(unittest.TestCase):
         act = model.Goal.find(db, "b1012100", "test title")
         self.assertTrue(act == None)
 
-    def test_remove_duplication(self):
+    def test_remove_false(self):
         db = Connection('localhost', 27017).testdata
         model.Goal.delete_all(db)
         r1 = model.Goal("b1012100", "test title")
@@ -204,7 +204,7 @@ class ItemLogTest(unittest.TestCase):
         for itemlog in act:
             self.assertTrue(itemlog.student_id == "b1012100")
 
-    def test_get_duplication(self):
+    def test_get_false(self):
         db = Connection('localhost', 27017).testdata
         model.ItemLog.delete_all(db)
         i1 = model.ItemLog("b1012100", "test goal", "test goal_item","2013/11/11", "hogehoge")
@@ -221,7 +221,7 @@ class ItemLogTest(unittest.TestCase):
         act = model.ItemLog.find(db, "b1012100", number1)
         self.assertTrue(act == None)
 
-    def test_remove_duplication(self):
+    def test_remove_false(self):
         db = Connection('localhost', 27017).testdata
         model.ItemLog.delete_all(db)
         r1 = model.ItemLog("b1012100", "test goal", "test goal_item","2013/11/11", "hogehoge")
