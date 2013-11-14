@@ -120,7 +120,7 @@ def post_goal():
     username = session['username']
     if request.form["button_name"] == "make":
         goal_title = request.form['goal_title']
-        g = model.Goal(goal_title)
+        g = model.Goal(username, goal_title)
         g.insert(model.db)
     return redirect('/goal')
 
@@ -131,7 +131,7 @@ def post_goal_item():
         goal_item_title = request.form["goal_item_title"]
         goal_title = request.form['goal_title']
         change_date = datetime.datetime.today()
-        gi = model.Goal_item(goal_item_title, change_date, goal_title, True)
+        gi = model.GoalItem(username, goal_item_title, change_date, goal_title, True)
         gi.insert(model.db)
     return redirect('/goal')
 
