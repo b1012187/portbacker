@@ -110,9 +110,8 @@ def index_page():
 @app.route('/goal', methods=['GET'])
 def get_goal():
     username = session['username']
-    goal_texts = model.get_goal_texts(username)
-    log_texts = model.get_log_texts(username)
-    return render_template_with_username("goal.html", goal_texts= goal_texts, log_texts=log_texts)
+    goals = model.Goal.get(model.db, username)
+    return render_template_with_username("goal.html", goals= goals)
 
 # goal_textの内容を受け取ってgoal.htmlに渡す 菅野：テキストは渡さないでgoal.htmlからdbにアクセスできるようにしました
 @app.route('/goal_post_goal', methods=['POST'])
