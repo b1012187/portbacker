@@ -271,8 +271,12 @@ small{
     border: 0px;
 }
 
+.goal-set-input .accordion-heading{
+    width: 70%;
+}
+
 .goal-set-input .accordion-inner{
-    margin-top: -20px;
+    margin-top: -15px;
     border: 0px;
 }
 

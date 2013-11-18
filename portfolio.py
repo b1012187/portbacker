@@ -111,7 +111,14 @@ def index_page():
 def get_goal():
     username = session['username']
     goals = model.Goal.get(model.db, username)
-    return render_template_with_username("goal.html", goals= goals)
+    goal_texts = []
+    for goal in goals:
+        goal_items = model.GoalItem.get(model.db, username, goal.title)
+        if goal_items != []:
+            goal_texts.append([goal, goal_items])
+        else:
+            goal_texts.append([goal, []])
+    return render_template_with_username("goal.html", goal_texts= goal_texts)
 
 # goal_textの内容を受け取ってgoal.htmlに渡す 菅野：テキストは渡さないでgoal.htmlからdbにアクセスできるようにしました
 @app.route('/goal_post_goal', methods=['POST'])
@@ -123,14 +130,22 @@ def post_goal():
         g.insert(model.db)
     return redirect('/goal')
 
+@app.route('/remove_goal', methods=['POST'])
+def remove_goal():
+    username = session['username']
+    if request.form["button_name"] == "remove":
+        goal_title = request.form["goal_title"]
+        model.Goal.remove(model.db, username, goal_title)
+    return redirect('/goal')
+
 @app.route('/goal_post_goal_item', methods=['POST'])
 def post_goal_item():
     username = session['username']
     if request.form["button_name"] == "make":
         goal_item_title = request.form["goal_item_title"]
         goal_title = request.form['goal_title']
-        change_date = datetime.datetime.today()
-        gi = model.GoalItem(username, goal_item_title, change_date, goal_title, True)
+        change_data = datetime.datetime.today()
+        gi = model.GoalItem(username, goal_title, goal_item_title, change_data, True)
         gi.insert(model.db)
     return redirect('/goal')
 
@@ -228,7 +243,10 @@ def diary_post():
 
 @app.route('/person', methods=['GET'])
 def diary():
-    return render_template_with_username("person.html");
+    username = session['username']
+    goals = model.Goal.get(model.db, username)
+    itemlogs = model.ItemLog.get(model.db, username)
+    return render_template_with_username("/person.html", goals= goals, itemlogs=itemlogs)
 
 @app.route('/view_file/<path:filename>', methods=['GET'])
 def view_file(filename):
