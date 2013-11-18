@@ -242,6 +242,12 @@ small{
 	margin-left: 10px;
 }
 
+.twibox .sort{
+	font-size: 15px; 
+	font-weight: bold;
+	margin-left: 10px;
+}
+
 .twitt-box{
     background: #c0c0c0;	
     margin:10px 10px 10px 10px;
@@ -258,6 +264,7 @@ small{
 
 .goal-set{
     width: 50%;
+    height: 100%;
     margin:10px 10px 10px 10px;
     padding:10px 10px 10px 10px;
 }
@@ -270,8 +277,17 @@ small{
     border: 0px;
 }
 
+.goal-set-input .accordion-heading{
+    padding-right: 0%;
+}
+
+.goal-set-input .goal_box{
+    width:80%;
+    display: inline-block;
+}
+
 .goal-set-input .accordion-inner{
-    margin-top: -20px;
+    margin-top: -10px;
     border: 0px;
 }
 

@@ -137,38 +137,26 @@ $("#goalcolor").css("color", "#fff");
           <textarea name="item_log_text" required></textarea>
           <h5>ゴールを選択</h5>
           <div class="accordion" id="accordion2">
-<!--プルダウンの各項目-->
+            {% if goal_texts != None%}
+            {% for goal_text in goal_texts %}
             <div class="accordion-group">
               <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                  <div class="sankaku">▶</div>Gitをマスターする
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#{{ goal_text[0].title }}">
+                  <div class="sankaku">▶</div>{{ goal_text[0].title }}
                 </a>
               </div>
-                <div id="collapseOne" class="accordion-body collapse in">
+                <div id="{{ goal_text[0].title }}" class="accordion-body collapse">
                 <div class="accordion-inner">
                   <ul>
-                    <li><input type="radio" name="goal_item_title" value="小ゴール１" required>ブランチを作成して、作業できるようにする</li>
-                    <li><input type="radio" name="goal_item_title" value="小ゴール１" required>Gitの環境を整える</li>
+                    {% for goalitem_text in goal_text[1] %}
+                    <li><input type="radio" name="goal_item_title" value="{{ goalitem_text.title }}" required>{{ goalitem_text.title }}</li>
+                    {% endfor %}
                   </ul>
                 </div>
               </div>
             </div>
-
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne2">
-                  <div class="sankaku">▶</div>Flaskでアプリケーションを作成できるようになる
-                </a>
-              </div>
-              <div id="collapseOne2" class="accordion-body collapse">
-                <div class="accordion-inner">
-                  <ul>
-                    <li><input type="radio" name="goal_item_title" value="小ゴール2" required>htmlでページを作成できるようになる</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-<!---->
+            {% endfor %}
+            {% endif %}
           </div>
           <div align="right">
             <input type="submit" value="入力" class="btn btn-primary" style="margin-top: -2em;">
