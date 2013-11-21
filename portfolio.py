@@ -255,8 +255,15 @@ def diary_post():
 def diary():
     username = session['username']
     goals = model.Goal.get(model.db, username)
-    itemlogs = model.ItemLog.get(model.db, username)
-    return render_template_with_username("/person.html", goals= goals, itemlogs=itemlogs)
+    goal_texts = []
+    if goals != None:
+        for goal in goals:
+            goal_items = model.GoalItem.get(model.db, username, goal.title)
+            if goal_items != []:
+                goal_texts.append([goal, goal_items])
+            else:
+                goal_texts.append([goal, []])
+    return render_template_with_username("/person.html", goal_texts= goal_texts)
 
 @app.route('/view_file/<path:filename>', methods=['GET'])
 def view_file(filename):
