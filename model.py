@@ -172,6 +172,11 @@ class GoalItem(object):
         return [GoalItem(doc["student_id"], doc["link_to_goal"], doc["title"], doc["change_data"], doc["visibility"]) for doc in docs]
     
     @classmethod
+    def remove(clz, db, student_id, link_to_goal, title):
+        col = db.portfolio_goals
+        col.remove({"student_id": student_id, "link_to_goal": link_to_goal ,"title": title})
+
+    @classmethod
     def delete_all(clz, db):
         db.drop_collection("portfolio_goal_items")
 

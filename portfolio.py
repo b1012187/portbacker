@@ -112,12 +112,13 @@ def get_goal():
     username = session['username']
     goals = model.Goal.get(model.db, username)
     goal_texts = []
-    for goal in goals:
-        goal_items = model.GoalItem.get(model.db, username, goal.title)
-        if goal_items != []:
-            goal_texts.append([goal, goal_items])
-        else:
-            goal_texts.append([goal, []])
+    if goals != None:
+        for goal in goals:
+            goal_items = model.GoalItem.get(model.db, username, goal.title)
+            if goal_items != []:
+                goal_texts.append([goal, goal_items])
+            else:
+                goal_texts.append([goal, []])
     return render_template_with_username("goal.html", goal_texts= goal_texts)
 
 # goal_textの内容を受け取ってgoal.htmlに渡す 菅野：テキストは渡さないでgoal.htmlからdbにアクセスできるようにしました
@@ -136,6 +137,15 @@ def remove_goal():
     if request.form["button_name"] == "remove":
         goal_title = request.form["goal_title"]
         model.Goal.remove(model.db, username, goal_title)
+    return redirect('/goal')
+
+@app.route('/goal_item', methods=['POST'])
+def edit_goal_item():
+    username = session['username']
+    if request.form["button_name"] == "完了":
+        pass
+    elif request.form["button_name"] == "削除":
+        pass
     return redirect('/goal')
 
 @app.route('/goal_post_goal_item', methods=['POST'])
