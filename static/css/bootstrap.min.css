@@ -278,11 +278,16 @@ small{
 }
 
 .goal-set-input .accordion-heading{
-    width: 70%;
+    padding-right: 0%;
+}
+
+.goal-set-input .goal_box{
+    width:80%;
+    display: inline-block;
 }
 
 .goal-set-input .accordion-inner{
-    margin-top: -15px;
+    margin-top: -10px;
     border: 0px;
 }
 

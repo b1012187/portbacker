@@ -115,14 +115,18 @@ $("#goalcolor").css("color", "#666");
             {% for goal_text in goal_texts %}
             <div class="accordion-group">
               <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#{{ goal_text[0].title }}">
-                  <div class="sankaku">▶</div>{{ goal_text[0].title  }}
-                </a>
-                <form method="post" action="/remove_goal">
-                  <input type="hidden" name="button_name" value="remove">
-                  <input type="hidden" name="goal_title" value="{{ goal_text[0].title  }}">
-                  <input type="submit" name="remove" class="btn btn-danger" style="margin-left:10px;" value="削除">
-                </form>
+                <div class="goal_box">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#{{ goal_text[0].title }}">
+                    <div class="sankaku">▶</div>{{ goal_text[0].title }}
+                  </a>
+                </div>
+                <div style="display: inline-block;">
+                  <form method="post" action="/remove_goal" style="vertical-align:middle;">
+                    <input type="hidden" name="button_name" value="remove">
+                    <input type="hidden" name="goal_title" value="{{ goal_text[0].title  }}">
+                    <input type="submit" name="remove" class="btn btn-danger" style="heigth: 100%;" value="削除">
+                  </form>
+                </div>
               </div>
                 <div id="{{ goal_text[0].title  }}" class="accordion-body collapse">
                 <div class="accordion-inner">
