@@ -78,7 +78,7 @@ body{
 }
 
 /*タブ*/
-#tabnavi li a, #goal, #date{
+#tabnavi li a, #goal{
 	text-decoration:none;
 	margin: 0 10px 0 0;
 }
