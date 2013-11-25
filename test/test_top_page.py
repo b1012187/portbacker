@@ -12,17 +12,15 @@ class TopPageTest(unittest.TestCase):
     def setUp(self):
         self.app = portfolio.app.test_client()
         with self.app.session_transaction() as sess:
-            sess['username'] = 'kamiya'
+            sess['username'] = 'hogehogehogey'
 
     def tearDown(self):
         pass
 
-    def test_top_page_inclues_links_to_pages(self):
+    def test_redirect_unregistered_user_to_profile_page(self):
         rv = self.app.get('/')
         text = rv.data.decode('utf-8')
-        self.assertTrue(u'ここはトップページです' in text)
-        self.assertTrue(u'href="portfolio"' in text)
-        self.assertTrue(u'href="goal"' in text)
+        self.assertTrue(u'"/profile"' in text)
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
