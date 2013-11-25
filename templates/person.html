@@ -12,8 +12,8 @@ $(function(){
     Personal.style.backgroundColor = "#dcdcdc";
   var Goal = document.getElementById('Goal');
     Goal.style.backgroundColor = "#888";
-  
-  //sort 
+  var date = document.getElementById('date');
+    date.style.color = "#888";
   var goal = document.getElementById('goal');
     goal.style.color = "#888";
 
@@ -52,14 +52,14 @@ $("#goalcolor").css("color", "#fff");
     $("#portcolor").css("color", "#fff");
   });
   
-  /*成果物管理*/
-  $("li#Artifact").mouseover(function(){
-    $("#Artifact").css("backgroundColor","#c0c0c0");
-    $("#artcolor").css("color", "#666");
+  /*個人日誌*/
+  $("li#Personal").mouseover(function(){
+    $("#Personal").css("backgroundColor","#c0c0c0");
+    $("#perscolor").css("color", "#666");
   });
-  $("li#Artifact").mouseout(function(){
-    $("#Artifact").css("backgroundColor","#888");
-    $("#artcolor").css("color", "#fff");
+  $("li#Personal").mouseout(function(){
+    $("#Personal").css("backgroundColor","#888");
+    $("#perscolor").css("color", "#fff");
   });
 
   /*ゴール*/
@@ -131,7 +131,7 @@ $("#goalcolor").css("color", "#fff");
     </div>
     <div class="box">
       <div class="diary">
-        <h4>■個人日誌入力</h4>
+        <h4>■個人日誌</h4>
         <form method="post" action="">
         <div class="input_diary">
           <textarea name="item_log_text" required></textarea>
@@ -165,11 +165,12 @@ $("#goalcolor").css("color", "#fff");
         </div>
       </div>
       <div class="twitt">
-        <h4>■日誌一覧</h4>
+        <h4>つぶやき</h4>
 <!--つぶやき-->
         <div class="twibox">
           <div class="sort">
-          <a id="goal">ゴール別に並び替え</a>
+          <a id="date">日付別</a>
+          <a id="goal">ゴール別</a>
           </div>
            <div class="twitt-box">
            <div class="date">10月10日</div>
