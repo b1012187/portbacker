@@ -99,6 +99,7 @@ body{
 textarea{
 	width: 400px;
 	height:400px;
+	resize: none;
 	/*サイズを変更できないようにする*/
 }
 
@@ -308,7 +309,7 @@ form{
   background-color: #ccc;
   width: 130px;
   height: 130px;
-  position: fixed;
+  position: absolute;
   margin-left: 450px;
 }
 
