@@ -78,7 +78,7 @@ body{
 }
 
 /*タブ*/
-#tabnavi li a, #goal{
+#tabnavi li a, #goal, #date{
 	text-decoration:none;
 	margin: 0 10px 0 0;
 }
@@ -297,7 +297,6 @@ small{
 
 .goal_item_done{
     color: #51a351;
-    font-size: 5em;
 }
 
 .goal-graphs{

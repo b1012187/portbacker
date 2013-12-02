@@ -64,15 +64,20 @@
                     <form method="post" action="/goal_item">
                       <input type="hidden" name="goal_title" value="{{ goal_text[0].title }}">
                       {% for goalitem in goal_text[1] %}
-                      <li><input type="checkbox" name="goal_item_title" value="{{ goalitem.title }}" 
-                       {% if goalitem.change_data[-1]["state"] %} 
-                        class="goal_item_done"
-                        {% else %}
-                        class="hogehoge"
-                        {% endif %}
-                        >{{ goalitem.title }}</li>
+                      <li><input type="checkbox" name="goal_item_title" value="{{ goalitem.title }}">
+                        <div 
+                          {% if goalitem.change_data[-1]["state"] %} 
+                          class="goal_item_done"
+                          {% else %}
+                          class="hogehoge"
+                          {% endif %}
+                          style="display: inline-block;"
+                          >
+                          {{ goalitem.title }}
+                        </div>
+                      </li>
                       {% endfor %}
-                      <input type="submit" name="edit_button" class="btn btn-success" style="margin-top:10px;" value="完了">
+                      <input type="submit" name="edit_button" class="btn btn-success" style="margin-top:10px;" value="完了<->未完了">
                       <input type="submit" name="edit_button" class="btn btn-danger" style="margin-top:10px;" value="削除">
                     </form>
                   </ul>

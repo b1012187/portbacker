@@ -10,6 +10,8 @@ UPLOAD_FOLDER = u'./data'
 DOCUMENT_EXTENSIONS = frozenset(['txt', 'pdf', 'md'])
 IMAGE_EXTENSIONS = frozenset(['png', 'jpg', 'jpeg', 'gif'])
 ALLOWED_EXTENSIONS = DOCUMENT_EXTENSIONS.union(IMAGE_EXTENSIONS)
+GRADE = [None, 'B1', 'B2', 'B3', 'B4', 'M1', 'M2', u'未所属']
+COURSE = [None, u'情報システムコース', u'情報デザインコース', u'複雑系知能コース', u'複雑系コース', u'未所属']
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -67,11 +69,21 @@ def path_from_sessionuser_root(*p):
 
 @app.before_request
 def befor_request():
-    if session.get('username') is not None:
+    if 'static' in request.path.split('/'): # static files
+        return
+    username = session.get('username')
+    if username is not None:
+        u = model.User.find(model.db, username)
+        if u is None:
+            return redirect('/logout')
+        if request.path == '/login':
+            return redirect('/')
+        if request.path == '/profile' or request.path == '/logout':
+            return
+        if u.name == None or u.course == None or u.grade == None:
+            return redirect('/profile')
         return
     if request.path == '/login':
-        return
-    if 'static' in request.path.split('/'):
         return
     return redirect('/login')
 
@@ -90,6 +102,9 @@ def login_post():
     session['username'] = username
     if not os.path.isdir(os.path.join(UPLOAD_FOLDER, username)):
         os.mkdir(path_from_sessionuser_root())
+    if model.User.find(model.db, username) == None:
+        u = model.User(None, username, None, None, None)
+        u.insert(model.db)
     return redirect('/')
 
 @app.route('/logout', methods=['GET'])
@@ -141,11 +156,10 @@ def remove_goal():
 def edit_goal_item():
     username = session['username']
     goal_title = request.form["goal_title"]
-    if request.form["edit_button"] == u"完了":
+    if request.form["edit_button"] == u"完了<->未完了":
         for item in request.form.getlist("goal_item_title"):
             itemc = model.GoalItem.find(model.db, username, goal_title, item)
-            itemc.change_data.append({"datetime": datetime.datetime.today(), "state": True})
-            sys.stderr.write("%s\n" % itemc.change_data)
+            itemc.change_data.append({"datetime": datetime.datetime.today(), "state": not itemc.change_data[-1]["state"]})
             itemc.update(model.db)
     elif request.form["edit_button"] == u"削除":
         for item in request.form.getlist("goal_item_title"):
@@ -302,11 +316,22 @@ def new_post():
 
 @app.route('/preview', methods=['POST'])
 def preview():
-    return request.form['textarea']
+    textarea = request.form['textarea']
+    return render_template_with_username("preview.html", textarea=textarea)
 
 @app.route('/profile', methods=['GET'])
 def profile():
-    return render_template_with_username("profile.html")
+    u = model.User.find(model.db, session.get("username")) 
+    return render_template_with_username("profile.html", user=u)
+
+@app.route('/profile', methods=['POST'])
+def setting_profile():
+    name = request.form['name']
+    grade = request.form['grade']
+    course = request.form['course']
+    u = model.User(name, session.get('username'), None, COURSE[int(course)], GRADE[int(grade)])
+    u.update(model.db)
+    return redirect("/")
 
 @app.errorhandler(404)
 def page_not_found(error):
