@@ -30,6 +30,24 @@ $ python portfolio.py
 * → もし起動しない場合は上記のインストールに不備がある
 * ブラウザでlocalhost:5000に接続
 
+## portfolioシステムのデータベースをクリアする方法
+
+1. コマンドラインからmongoという対話的にデータベースを操作するコマンドを起動する。
+2. user portbackerでportbackerのデータベースを指定する。
+3. db.dropDatabase()でデータベースを削除する。
+
+(実行例)
+
+```bash
+$ mongo
+> use portbacker
+switched to db portbacker
+> db.dropDatabase()
+{ "dropped" : "portbacker", "ok" : 1 }
+> show dbs
+> quit()
+```
+
 ## wiki
 [wiki](https://github.com/ICTKyouikukei2013/portbacker/wiki "wiki")
 
