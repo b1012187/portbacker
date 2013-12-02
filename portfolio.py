@@ -115,6 +115,8 @@ def get_goal():
     for goal in goals:
         goal_items = model.GoalItem.get(model.db, username, goal.title)
         goal_texts.append([goal, goal_items])
+        for text in goal_items:
+            sys.stderr.write("%s\n" % text.change_data[-1])
     return render_template_with_username("goal.html", goal_texts= goal_texts)
 
 # goal_textの内容を受け取ってgoal.htmlに渡す 菅野：テキストは渡さないでgoal.htmlからdbにアクセスできるようにしました
@@ -138,10 +140,14 @@ def remove_goal():
 @app.route('/goal_item', methods=['POST'])
 def edit_goal_item():
     username = session['username']
+    goal_title = request.form["goal_title"]
     if request.form["edit_button"] == u"完了":
-        pass
+        for item in request.form.getlist("goal_item_title"):
+            itemc = model.GoalItem.find(model.db, username, goal_title, item)
+            itemc.change_data.append({"datetime": datetime.datetime.today(), "state": True})
+            sys.stderr.write("%s\n" % itemc.change_data)
+            itemc.update(model.db)
     elif request.form["edit_button"] == u"削除":
-        goal_title = request.form["goal_title"]
         for item in request.form.getlist("goal_item_title"):
             model.GoalItem.remove(model.db, username, goal_title, item)
     return redirect('/goal')
@@ -152,7 +158,7 @@ def post_goal_item():
     if request.form["button_name"] == "make":
         goal_item_title = request.form["goal_item_title"]
         goal_title = request.form['goal_title']
-        change_data = datetime.datetime.today()
+        change_data = [{"datetime": datetime.datetime.today(), "state": False}]
         gi = model.GoalItem(username, goal_title, goal_item_title, change_data, True)
         gi.insert(model.db)
     return redirect('/goal')

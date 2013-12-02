@@ -125,6 +125,9 @@ class Goal(object):
 class GoalItemDuplicationError(ValueError):
     pass
 
+class GoalItemNotFoundError(ValueError):
+    pass
+
 class GoalItem(object):
     def __init__(self, student_id, link_to_goal, title, change_data, visibility):
         self.student_id = student_id
@@ -143,6 +146,10 @@ class GoalItem(object):
             "title": self.title,
             "change_data": self.change_data,
             "visibility": self.visibility})
+
+    def update(self, db):
+        GoalItem.remove(db, self.student_id, self.link_to_goal, self.title)
+        self.insert(db)
     
     @classmethod 
     def find(clz , db, student_id, link_to_goal, title):

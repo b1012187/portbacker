@@ -295,6 +295,11 @@ small{
     margin-bottom: -5px;
 }
 
+.goal_item_done{
+    color: #51a351;
+    font-size: 5em;
+}
+
 .goal-graphs{
     width: 50%;
     height: ;

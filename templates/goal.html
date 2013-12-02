@@ -139,10 +139,16 @@ $("#goalcolor").css("color", "#666");
                     </form>
                     <form method="post" action="/goal_item">
                       <input type="hidden" name="goal_title" value="{{ goal_text[0].title }}">
-                      {% for goalitem_text in goal_text[1] %}
-                      <li><input type="checkbox" name="goal_item_title" value="{{ goalitem_text.title }}">{{ goalitem_text.title }}</li>
+                      {% for goalitem in goal_text[1] %}
+                      <li><input type="checkbox" name="goal_item_title" value="{{ goalitem.title }}" 
+                       {% if goalitem.change_data[-1]["state"] %} 
+                        class="goal_item_done"
+                        {% else %}
+                        class="hogehoge"
+                        {% endif %}
+                        >{{ goalitem.title }}</li>
                       {% endfor %}
-                      <input type="submit" name="edit_button" class="btn btn-primary" style="margin-top:10px;" value="完了">
+                      <input type="submit" name="edit_button" class="btn btn-success" style="margin-top:10px;" value="完了">
                       <input type="submit" name="edit_button" class="btn btn-danger" style="margin-top:10px;" value="削除">
                     </form>
                   </ul>
