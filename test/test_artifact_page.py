@@ -10,11 +10,16 @@ import os.path
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 
 import portfolio
+import model
 
 # ref https://gist.github.com/lost-theory/3772472
 
 class ArtifactPageTest(unittest.TestCase):
     def setUp(self):
+        model.User.delete_all(model.db)
+        self.u = model.User("Hoge ratta", "kamiya", None, u'情報システム', 'B4')
+        self.u.insert(model.db)
+
         self.app = app = portfolio.app
         app.debug = True
         username = 'kamiya'

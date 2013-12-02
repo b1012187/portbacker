@@ -20,15 +20,15 @@ class TopPageTest(unittest.TestCase):
         self.client = app.test_client()
 
         with self.client.session_transaction() as sess:
-            sess['username'] = 'b1010999'
+            sess['username'] = 'hogehogehogey'
 
     def tearDown(self):
         pass
 
-    def test_logined_user_login(self):
-        rv = self.client.get('/login')
+    def test_redirect_unregistered_user_to_logout_page(self):
+        rv = self.client.get('/profile')
         text = rv.data.decode('utf-8')
-        self.assertTrue(u'<a href="/">/</a>' in text)
+        self.assertTrue(u'"/logout"' in text)
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
