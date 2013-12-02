@@ -114,10 +114,7 @@ class Goal(object):
         col = db.portfolio_goals
         docs = col.find({"student_id": student_id})
         docs = list(docs)
-        if len(docs) == 0:
-            return None
-        else :
-            return [Goal(doc["student_id"], doc["title"]) for doc in docs] 
+        return [Goal(doc["student_id"], doc["title"]) for doc in docs] 
 
     @classmethod
     def remove(clz, db, student_id, title):

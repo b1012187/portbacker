@@ -115,7 +115,7 @@ class GoalTest(unittest.TestCase):
         g1 = model.Goal("b1012100", "text title")
         g1.insert(db)
         act = model.Goal.get(db, "b1012101")
-        self.assertTrue(act == None)
+        self.assertEqual(act, [])
 
     def test_remove(self):
         db = Connection('localhost', 27017).testdata
