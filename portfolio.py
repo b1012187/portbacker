@@ -313,7 +313,8 @@ def new_post():
 
 @app.route('/preview', methods=['POST'])
 def preview():
-    return request.form['textarea']
+    textarea = request.form['textarea']
+    return render_template_with_username("preview.html", textarea=textarea)
 
 @app.route('/profile', methods=['GET'])
 def profile():
