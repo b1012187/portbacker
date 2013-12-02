@@ -114,10 +114,7 @@ class Goal(object):
         col = db.portfolio_goals
         docs = col.find({"student_id": student_id})
         docs = list(docs)
-        if len(docs) == 0:
-            return None
-        else :
-            return [Goal(doc["student_id"], doc["title"]) for doc in docs] 
+        return [Goal(doc["student_id"], doc["title"]) for doc in docs] 
 
     @classmethod
     def remove(clz, db, student_id, title):
@@ -167,13 +164,11 @@ class GoalItem(object):
             "student_id": student_id, 
             "link_to_goal": link_to_goal})
         docs = list(docs)
-        if len(docs) == 0:
-            return []
         return [GoalItem(doc["student_id"], doc["link_to_goal"], doc["title"], doc["change_data"], doc["visibility"]) for doc in docs]
     
     @classmethod
     def remove(clz, db, student_id, link_to_goal, title):
-        col = db.portfolio_goals
+        col = db.portfolio_goal_items
         col.remove({"student_id": student_id, "link_to_goal": link_to_goal ,"title": title})
 
     @classmethod
