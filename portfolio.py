@@ -138,10 +138,12 @@ def remove_goal():
 @app.route('/goal_item', methods=['POST'])
 def edit_goal_item():
     username = session['username']
-    if request.form["button_name"] == "完了":
+    if request.form["edit_button"] == u"完了":
         pass
-    elif request.form["button_name"] == "削除":
-        pass
+    elif request.form["edit_button"] == u"削除":
+        goal_title = request.form["goal_title"]
+        for item in request.form.getlist("goal_item_title"):
+            model.GoalItem.remove(model.db, username, goal_title, item)
     return redirect('/goal')
 
 @app.route('/goal_post_goal_item', methods=['POST'])

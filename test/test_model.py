@@ -166,7 +166,16 @@ class GoalItemTest(unittest.TestCase):
         act1 = model.GoalItem.find(db, "b1012100", "test goal", "test title")
         act2 = model.GoalItem.find(db, "b1012100", "test goal1", "test title1")
         self.assertTrue(act1 != None)
-        self.assertTrue(act2 != None) 
+        self.assertTrue(act2 != None)
+
+    def test_remove(self):
+        db = Connection('localhost', 27017).testdata
+        model.GoalItem.delete_all(db)
+        i1 = model.GoalItem("b1012100", "test goal", "test title", "testdata",False)
+        i1.insert(db)
+        model.GoalItem.remove(db, "b1012100", "test goal", "test title")
+        act1 = model.GoalItem.find(db, "b1012100", "test goal", "test title")
+        self.assertTrue(act1 == None)
 
 
     def test_get(self):
