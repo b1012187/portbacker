@@ -127,13 +127,9 @@ def get_goal():
     username = session['username']
     goals = model.Goal.get(model.db, username)
     goal_texts = []
-    if goals != None:
-        for goal in goals:
-            goal_items = model.GoalItem.get(model.db, username, goal.title)
-            if goal_items != []:
-                goal_texts.append([goal, goal_items])
-            else:
-                goal_texts.append([goal, []])
+    for goal in goals:
+        goal_items = model.GoalItem.get(model.db, username, goal.title)
+        goal_texts.append([goal, goal_items])
     return render_template_with_username("goal.html", goal_texts= goal_texts)
 
 # goal_textの内容を受け取ってgoal.htmlに渡す 菅野：テキストは渡さないでgoal.htmlからdbにアクセスできるようにしました
@@ -271,13 +267,9 @@ def diary():
     username = session['username']
     goals = model.Goal.get(model.db, username)
     goal_texts = []
-    if goals != None:
-        for goal in goals:
-            goal_items = model.GoalItem.get(model.db, username, goal.title)
-            if goal_items != []:
-                goal_texts.append([goal, goal_items])
-            else:
-                goal_texts.append([goal, []])
+    for goal in goals:
+        goal_items = model.GoalItem.get(model.db, username, goal.title)
+        goal_texts.append([goal, goal_items])
     return render_template_with_username("/person.html", goal_texts= goal_texts)
 
 @app.route('/view_file/<path:filename>', methods=['GET'])
