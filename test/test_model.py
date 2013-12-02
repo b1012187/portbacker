@@ -185,7 +185,7 @@ class GoalItemTest(unittest.TestCase):
         g1 = model.GoalItem("b1012100", "test goal", "test title", "testdata",False)
         g1.insert(db)
         act1 = model.GoalItem.get(db, "b1012101", "test goal")
-        self.assertTrue(act1 == None)
+        self.assertEqual(act1, [])
 
     def test_remove(self):
         db = Connection('localhost', 27017).testdata

@@ -167,8 +167,6 @@ class GoalItem(object):
             "student_id": student_id, 
             "link_to_goal": link_to_goal})
         docs = list(docs)
-        if len(docs) == 0:
-            return None
         return [GoalItem(doc["student_id"], doc["link_to_goal"], doc["title"], doc["change_data"], doc["visibility"]) for doc in docs]
     
     @classmethod
