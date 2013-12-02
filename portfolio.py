@@ -73,10 +73,14 @@ def befor_request():
         return
     username = session.get('username')
     if username is not None:
+        u = model.User.find(model.db, username)
+        if u is None:
+            return redirect('/logout')
+        if request.path == '/login':
+            return redirect('/')
         if request.path == '/profile' or request.path == '/logout':
             return
-        u = model.User.find(model.db, username) 
-        if u is None or u.name == None or u.course == None or u.grade == None:
+        if u.name == None or u.course == None or u.grade == None:
             return redirect('/profile')
         return
     if request.path == '/login':
