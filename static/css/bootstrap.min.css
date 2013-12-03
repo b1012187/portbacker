@@ -445,3 +445,31 @@ form{
 	margin: 5px 5px 5px 5px;
 	float: left;
 }
+
+/* タブ */
+li.tab {
+	padding: 5px;
+	border-radius: 5px 5px 0px 0px;
+}
+li.tab-selected {
+	color: #666;
+	background-color: #dcdcdc;
+}
+li.tab-unsel {
+	color: #fff;
+	background-color: #888;
+}
+
+li.tab-selected a {
+	color: #666;
+}
+li.tab-unsel a {
+	color: #fff;
+}
+
+/*その場しのぎしてます*/
+#move_tab {
+	margin-left: 235px;
+	margin-top: -125px;
+}
+
