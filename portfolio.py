@@ -67,9 +67,15 @@ def path_from_sessionuser_root(*p):
     s.extend(p)
     return os.path.join(*s)
 
+def authentification(username, password):
+    return True
+    # return username == password
+
 @app.before_request
-def befor_request():
+def check_login_done():
     if 'static' in request.path.split('/'): # static files
+        return
+    if request.path == '/logout':
         return
     username = session.get('username')
     if username is not None:
@@ -89,7 +95,7 @@ def befor_request():
 
 @app.route('/login', methods=['GET'])
 def login_get():
-    if session.get('username') is not None:
+    if session.get('username') is not None and authentification(session.get('username'), session.get('password')):
         return redirect('/')
     return render_template('login.html')
 
@@ -321,8 +327,9 @@ def preview():
 
 @app.route('/profile', methods=['GET'])
 def profile():
-    u = model.User.find(model.db, session.get("username")) 
-    return render_template_with_username("profile.html", user=u)
+    uid = session.get("username")
+    uobj = model.User.find(model.db, session.get("username"))
+    return render_template_with_username("profile.html", uid=uid)
 
 @app.route('/profile', methods=['POST'])
 def setting_profile():
