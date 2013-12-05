@@ -25,13 +25,13 @@ class TopPageTest(unittest.TestCase):
                 username='b1010999', password='hogehoge'),
                 follow_redirects=True)
         self.assertEqual(rv.status_code, 200)
-        self.assertTrue(u'<title>E-portfolio</title>' in rv.data)  # top page
+        self.assertTrue(u'<title>E-portfolio</title>' in rv.data.decode('utf-8'))  # top page
 
     def test_login_by_unregistered(self):
         rv = self.client.post('/login', data=dict(
                 username='unregistered', password='hogehoge'),
                 follow_redirects=True)
-        self.assertTrue('<div class="prof">' in rv.data)  # user profile registration page
+        self.assertTrue(u'<div class="prof">' in rv.data.decode('utf-8'))  # user profile registration page
         rv = self.client.get('/logout', follow_redirects=True)
 
     def test_access_before_login(self):
@@ -39,11 +39,11 @@ class TopPageTest(unittest.TestCase):
             sess['username'] = None
         rv = self.client.get('/', follow_redirects=True)
         self.assertEqual(rv.status_code, 200)
-        self.assertTrue(u'<div class="loginbox">' in rv.data)  # login page
+        self.assertTrue(u'<div class="loginbox">' in rv.data.decode('utf-8'))  # login page
 
         rv = self.client.get('/goal', follow_redirects=True)
         self.assertEqual(rv.status_code, 200)
-        self.assertTrue(u'<div class="loginbox">' in rv.data)  # login page
+        self.assertTrue(u'<div class="loginbox">' in rv.data.decode('utf-8'))  # login page
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
