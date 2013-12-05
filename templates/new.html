@@ -124,6 +124,15 @@
 
     }
   </style>
+  <script type="text/javascript">
+    $(function(){
+       $(".picker").css("border", "solid");
+       $(".picker").on("click", function(ev){
+         $(".picker").css("border", "solid");
+         $(this).css("border", "double #d4dcd6");
+      });
+    });
+  </script>
    <script type="text/javascript" src="/static/js/bootstrap-colorpalette.js" charset="utf-8"></script>
   <link rel="stylesheet" type="text/css" media="all" href="/static/css/bootstrap-colorpalette.css" />
   <link rel="stylesheet" type="text/css" media="all" href="/static/css/example.css" />
@@ -150,52 +159,52 @@
             
             <div class="bg">
               <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="black">
-                <div class="black"></div>
+                <div id="black" class="picker"></div>
               </a>
               <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="silver">
-                <div class="silver"></div>
+                <div id="silver" class="picker"></div>
               </a>
               <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="gray">
-                <div class="gray"></div>
+                <div id="gray" class="picker"></div>
               </a>
               <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="white">
-                <div class="white"></div>
+                <div id="white" class="picker"></div>
               </a>
               <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="maroon">
-                <div class="maroon"></div>
+                <div id="maroon" class="picker"></div>
               </a>
               <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red">
-                <div class="red"></div>
+                <div id="red" class="picker"></div>
               </a>
               <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="purple">
-                <div class="purple"></div>
+                <div id="purple" class="picker"></div>
               </a>
               <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="fuchsia">
-                <div class="fuchsia"></div>
+                <div id="fuchsia" class="picker"></div>
               </a>
               <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green">
-                <div class="green"></div>
+                <div id="green" class="picker"></div>
               </a>
               <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="lime">
-                <div class="lime"></div>
+                <div id="lime" class="picker"></div>
               </a>
               <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="olive">
-                <div class="olive"></div>
+                <div id="olive" class="picker"></div>
               </a>
               <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="yellow">
-                <div class="yellow"></div>
+                <div id="yellow" class="picker"></div>
               </a>
               <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="navy">
-                <div class="navy"></div>
+                <div id="navy" class="picker"></div>
               </a>
               <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue">
-                <div class="blue"></div>
+                <div id="blue" class="picker"></div>
               </a>
               <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="teal">
-                <div class="teal"></div>
+                <div id="teal" class="picker"></div>
               </a>
               <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="aqua">
-                <div class="aqua"></div>
+                <div id="aqua" class="picker"></div>
               </a>
             </div>
 
@@ -278,7 +287,7 @@ function sendSave()
   });
   
   var log = document.getElementById("log");
-  
+  if(log != null){
   editor
     .on("load", function() {
       log.innerHTML += "<div>load</div>";
@@ -304,5 +313,6 @@ function sendSave()
     .on("redo:composer", function() {
       log.innerHTML += "<div>redo:composer</div>";
     });
+  }
 </script>
 {% endblock %}
