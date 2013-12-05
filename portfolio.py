@@ -353,6 +353,10 @@ def setting_profile():
     grade = request.form['grade']
     course = request.form['course']
     show_tabs = request.form['show_tabs']
+    if not name or not grade or not course:
+        return render_template_with_username("profile.html", 
+                uid=uid, name=name, course_index=course, grade_index=grade,
+                show_tabs=show_tabs)
     uobj = model.User(name, session.get('username'), None, COURSE[int(course)], GRADE[int(grade)])
     uobj.update(model.db)
     if show_tabs:
