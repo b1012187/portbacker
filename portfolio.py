@@ -339,7 +339,7 @@ def render_profile_page_with_user_obj(uid, uobj):
 def profile():
     uid = session.get("username")
     uobj = model.User.find(model.db, uid)
-    if uobj and uobj.name is not None:  # if user exists and not a dummy user
+    if uobj and not (not uobj.name or not uobj.course or not uobj.grade):  # if user exists and not a dummy user
         return render_profile_page_with_user_obj(uid, uobj)
     else:
         return render_template_with_username("profile.html", 
@@ -353,6 +353,12 @@ def setting_profile():
     grade = request.form['grade']
     course = request.form['course']
     show_tabs = request.form['show_tabs']
+    try:
+        course = int(course)
+        grade = int(grade)
+        show_tabs = int(show_tabs)
+    except:
+        course = grade = show_tabs = 0
     if not name or not grade or not course:
         return render_template_with_username("profile.html", 
                 uid=uid, name=name, course_index=course, grade_index=grade,

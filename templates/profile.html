@@ -35,7 +35,7 @@
         <form method="post" action="/profile">
           ユーザーID（学籍番号）&emsp;<input type="text" readonly="readonly" name="number_text" style="width:100px;" value="{{uid}}" />
           <br>
-          名前&emsp;<input type="text" name="name" style="width:100px;" value="{{name}}" required/>
+          名前&emsp;<input type="text" name="name" style="width:100px;" value="{{name}}" required autofocus/>
           <br>
           <!--
           <br> 
@@ -52,7 +52,7 @@
           <input type="text" name="pass_text" style="width:100px;">
           -->
           学年&emsp;<SELECT name="grade" id="grade">
-            <OPTION value="0" style="display:none">学年</OPTION>
+            <OPTION value="0">学年</OPTION>
             <OPTION value="1">B1</OPTION>
             <OPTION value="2">B2</OPTION>
             <OPTION value="3">B3</OPTION>
@@ -63,7 +63,7 @@
           </SELECT>
           <br>
           所属&emsp;<SELECT name="course" id="course">
-            <OPTION value="0" style="display:none">所属</OPTION>
+            <OPTION value="0">所属</OPTION>
             <OPTION value="1">情報システムコース</OPTION>
             <OPTION value="2">情報デザインコース</OPTION>
             <OPTION value="3">複雑系知能コース</OPTION>
@@ -80,8 +80,21 @@
 </div>
 <script>
 $(function() {
-  $('#grade').val({{grade_index}});
-  $('#course').val({{course_index}});
+  $('#grade > option').css("color", "#000");
+  var g = $('#grade');
+  g.val({{grade_index}});
+  g.css("color", {{grade_index}} == 0 ? "#f00" : "#000");
+  g.change(function() {
+    $(this).css("color", $(this).val() == 0 ? "#f00" : "#000");
+  });
+
+  $('#course > option').css("color", "#000");
+  var c = $('#course');
+  c.val({{course_index}});
+  c.css("color", {{course_index}} == 0 ? "#f00" : "#000");
+  c.change(function() {
+    $(this).css("color", $(this).val() == 0 ? "#f00" : "#000");
+  });
 });
 </script>
 {% endblock %}
