@@ -2,7 +2,6 @@
 
 from pymongo import Connection
 
-
 class Group(object):
     def __init__(self, name, group_id):
         self.name = name
@@ -28,6 +27,9 @@ class Group(object):
     def delete_all(clz, db):
         db.drop_collection("portfolio_groups")
 
+class UserDuplicationError(ValueError):
+    pass
+
 class User(object):
     def __init__(self, name, student_id, joining_groups, course, grade):
         self.name = name
@@ -38,12 +40,18 @@ class User(object):
 
     def insert(self, db):
         col = db.portfolio_users
+        if User.find(db, self.student_id) != None:
+            raise UserDuplicationError
         col.insert({
             "name": self.name,
             "student_id":self.student_id,
             "joining_groups":self.joining_groups,
             "course":self.course,
             "grade":self.grade})
+
+    def update(self, db):
+        col = db.portfolio_users
+        col.update({"student_id": self.student_id}, {"name":self.name, "student_id":self.student_id, "joining_groups": self.joining_groups, "course": self.course, "grade": self.grade})
 
     @classmethod
     def find(clz, db, student_id):
@@ -77,7 +85,7 @@ class User(object):
             joining_groups = doc["joining_groups"]
             if group_id in joining_groups:
                 store.append(doc["student_id"])
-        return store        
+        return store
 
 class GoalDuplicationError(ValueError):
     pass
@@ -125,6 +133,9 @@ class Goal(object):
 class GoalItemDuplicationError(ValueError):
     pass
 
+class GoalItemNotFoundError(ValueError):
+    pass
+
 class GoalItem(object):
     def __init__(self, student_id, link_to_goal, title, change_data, visibility):
         self.student_id = student_id
@@ -143,6 +154,10 @@ class GoalItem(object):
             "title": self.title,
             "change_data": self.change_data,
             "visibility": self.visibility})
+
+    def update(self, db):
+        GoalItem.remove(db, self.student_id, self.link_to_goal, self.title)
+        self.insert(db)
     
     @classmethod 
     def find(clz , db, student_id, link_to_goal, title):

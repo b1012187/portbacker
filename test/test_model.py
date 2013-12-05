@@ -42,8 +42,17 @@ class UserTest(unittest.TestCase):
         act2 = model.User.find_user_ids_by_joining_group(db, u"高度ICT演習事務系")
         self.assertTrue(act2 == ["b1012999"])
         act3 = model.User.find_user_ids_by_joining_group(db, u"高度ICT演習海洋系")
-        self.assertTrue(act3 == [])                
+        self.assertTrue(act3 == [])             
 
+    def test_update(self):
+        db = Connection('localhost', 27017).testdata
+        model.User.delete_all(db)
+        u = model.User("morohara", "b1012187", ["高度ICT演習教育系"], "情報システム", "B2")
+        u.insert(db)
+        u2 = model.User("mother", "b1012187", ["高度ICT演習教育系"], "知能システム", "B2")
+        u2.update(db)
+        act = model.User.find(db, "b1012187")
+        self.assertTrue(act.name == "mother")
 
 
 class GroupTest(unittest.TestCase):
@@ -166,8 +175,7 @@ class GoalItemTest(unittest.TestCase):
         act1 = model.GoalItem.find(db, "b1012100", "test goal", "test title")
         act2 = model.GoalItem.find(db, "b1012100", "test goal1", "test title1")
         self.assertTrue(act1 != None)
-        self.assertTrue(act2 != None) 
-
+        self.assertTrue(act2 != None)
 
     def test_get(self):
         db = Connection('localhost', 27017).testdata

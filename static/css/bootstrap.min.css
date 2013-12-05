@@ -74,7 +74,7 @@ body{
 }
 
 /*タブ*/
-#tabnavi li a, #goal{
+#tabnavi li a, #goal, #date{
 	text-decoration:none;
 	margin: 0 10px 0 0;
 }
@@ -291,6 +291,10 @@ small{
     margin-bottom: -5px;
 }
 
+.goal_item_done{
+    color: #51a351;
+}
+
 .goal-graphs{
     width: 50%;
     height: ;
@@ -303,13 +307,17 @@ form{
 
 .bg{
   background-color: #ccc;
-  width: 130px;
-  height: 130px;
+  width: 160px;
+  height: 160px;
   position: absolute;
   margin-left: 450px;
 }
 
-.black{
+.picker{
+	border: solid;
+}
+
+#black{
 	background-color: black;
 	width: 20px;
 	height: 20px;
@@ -317,7 +325,7 @@ form{
 	float: left;
 }
 
-.silver{
+#silver{
 	background-color: silver;
 	width: 20px;
 	height: 20px;
@@ -325,7 +333,7 @@ form{
 	float: left;
 }
 
-.gray{
+#gray{
 	background-color: gray;
 	width: 20px;
 	height: 20px;
@@ -334,7 +342,7 @@ form{
 
 }
 
-.white{
+#white{
 	background-color: white;
 	width: 20px;
 	height: 20px;
@@ -342,7 +350,7 @@ form{
 	float: left;
 }
 
-.maroon{
+#maroon{
 	background-color: maroon;
 	width: 20px;
 	height: 20px;
@@ -350,7 +358,7 @@ form{
 	float: left;
 }
 
-.red{
+#red{
 	background-color: red;
 	width: 20px;
 	height: 20px;
@@ -358,7 +366,7 @@ form{
 	float: left; 
 }
 
-.purple{
+#purple{
 	background-color: purple;
 	width: 20px;
 	height: 20px;
@@ -366,7 +374,7 @@ form{
 	float: left;
 }
 
-.fuchsia{
+#fuchsia{
 	background-color: fuchsia;
 	width: 20px;
 	height: 20px;
@@ -374,7 +382,7 @@ form{
 	float: left; 
 }
 
-.green{
+#green{
 	background-color: green;
 	width: 20px;
 	height: 20px;
@@ -382,7 +390,7 @@ form{
 	float: left;
 }
 
-.lime{
+#lime{
 	background-color: lime;
 	width: 20px;
 	height: 20px;
@@ -390,7 +398,7 @@ form{
 	float: left;
 }
 
-.olive{
+#olive{
 	background-color: olive;
 	width: 20px;
 	height: 20px;
@@ -398,7 +406,7 @@ form{
 	float: left;
 }
 
-.yellow{
+#yellow{
 	background-color: yellow;
 	width: 20px;
 	height: 20px;
@@ -406,7 +414,7 @@ form{
 	float: left;
 }
 
-.navy{
+#navy{
 	background-color: navy;
 	width: 20px;
 	height: 20px;
@@ -414,7 +422,7 @@ form{
 	float: left;
 }
 
-.blue{
+#blue{
 	background-color: blue;
 	width: 20px;
 	height: 20px;
@@ -422,7 +430,7 @@ form{
 	float: left;
 }
 
-.teal{
+#teal{
 	background-color: teal;
 	width: 20px;
 	height: 20px;
@@ -430,10 +438,38 @@ form{
 	float: left;
 }
 
-.aqua{
+#aqua{
 	background-color: aqua;
 	width: 20px;
 	height: 20px;
 	margin: 5px 5px 5px 5px;
 	float: left;
 }
+
+/* タブ */
+li.tab {
+	padding: 5px;
+	border-radius: 5px 5px 0px 0px;
+}
+li.tab-selected {
+	color: #666;
+	background-color: #dcdcdc;
+}
+li.tab-unsel {
+	color: #fff;
+	background-color: #888;
+}
+
+li.tab-selected a {
+	color: #666;
+}
+li.tab-unsel a {
+	color: #fff;
+}
+
+/*その場しのぎしてます*/
+#move_tab {
+	margin-left: 235px;
+	margin-top: -125px;
+}
+
