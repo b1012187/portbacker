@@ -22,7 +22,9 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 def render_template_with_username(url,**keywordargs):
-    username = session.get('username')
+    username = session.get('displayname')
+    if not username:
+        username = session.get('username')
     return render_template(url,username=username,**keywordargs)
 
 def instance_of_ldap(username, password):
@@ -110,15 +112,18 @@ def login_post():
     session['username'] = username
     if not os.path.isdir(os.path.join(UPLOAD_FOLDER, username)):
         os.mkdir(path_from_sessionuser_root())
-    if model.User.find(model.db, username) == None:
+    u = model.User.find(model.db, username)
+    if u is None:
         u = model.User(None, username, None, None, None)  # insert dummy user
         u.insert(model.db)
+    session['displayname'] = u.name if u.name else None
     return redirect('/')
 
 @app.route('/logout', methods=['GET'])
 def logout():
     # remove the username from the session if its there
     session.pop('username', None)
+    session.pop('displayname', None)
     return render_template("logout.html")
 
 @app.route('/uploaded_file', methods=['GET'])
@@ -365,6 +370,7 @@ def setting_profile():
                 show_tabs=show_tabs)
     uobj = model.User(name, session.get('username'), None, COURSE[int(course)], GRADE[int(grade)])
     uobj.update(model.db)
+    session['displayname'] = uobj.name if uobj.name else None
     if show_tabs:
         return render_profile_page_with_user_obj(uid, uobj)
     else:
