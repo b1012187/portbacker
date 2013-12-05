@@ -327,8 +327,9 @@ def preview():
 
 @app.route('/profile', methods=['GET'])
 def profile():
-    u = model.User.find(model.db, session.get("username")) 
-    return render_template_with_username("profile.html", user=u)
+    uid = session.get("username")
+    uobj = model.User.find(model.db, session.get("username"))
+    return render_template_with_username("profile.html", uid=uid)
 
 @app.route('/profile', methods=['POST'])
 def setting_profile():
