@@ -117,7 +117,7 @@ def login_post():
 def logout():
     # remove the username from the session if its there
     session.pop('username', None)
-    return redirect('/login')
+    return render_template("logout.html")
 
 @app.route('/uploaded_file', methods=['GET'])
 def uploaded_file():
