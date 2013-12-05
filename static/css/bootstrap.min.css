@@ -35,28 +35,26 @@
 .prof #usrname{
 	font-weight: bold;
 	margin-left: 15px;
-	line-height: 110px;
+	line-height: 80px;
 }
 
-/*ログアウトボタンの位置なんとか変更したい*/
-.prof #logoutbtn{
-	margin-left: 170px; 
-	margin-top: -80px; 
+.prof #logoutbtncontainer {
+	position: relative;
+	bottom: 5px;
+	height: 20px;
 }
-
-#logoutbtn:after{/*魔法の言葉さ.float解除しちゃうよ*/
-	content: "."; /*floatの要素が終わったら.をうつよ*/
-	display: block;/*この.はblockなんだよって*/
-	height: 0;/*だけど高さは0なんだよ*/
-	clear: both;/*clear:bothでfloat解除しちゃうよ*/
-	visibility: hidden;/*.みえなくしちゃうよ～～～*/
+.prof #logoutbtn {
+	position: absolute;
+	right: 5px;
+	bottom: 0;
 }
 
 .group{
+	position: absolute;
 	width: 250px;
 	height: 75px;
 	background-color: #dcdcdc;
-	margin-top: -30px;
+	margin-top: 30px;
 }
 
 .group input{

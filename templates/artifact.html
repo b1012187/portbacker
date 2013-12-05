@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 {% block body %}
-  <div Class="style">
+  <div class="style">
     <div id="tabnavi">
-      <div Class="size">
+      <div class="size">
         <div id="move_tab">
           <ul>
             <li class="tab tab-unsel"><a href="/">&nbsp;&nbsp;&nbsp;トップ&nbsp;&nbsp;&nbsp;</a></li>
@@ -17,22 +17,28 @@
     </div>
     <div class="box">
       <div class="headline">フォルダ作成<br>
-        <form action="" method=post enctype=multipart/form-data>
-        <p><input type="text" name=directoryname>
-	      <input type=submit value=作成 class="btn btn-secondry">
-      <h3>ファイルのアップロード</h3>
-      	<p><input type="file" name=file>
-	      <input type=submit value=Upload class="btn btn-secondry">
+        <form action="" method="post" enctype="multipart/form-data">
+          <p>
+            <input type="text" name="directoryname" />
+            <input type="submit" value="作成" class="btn btn-secondry" />
+          </p>
+          <h3>ファイルのアップロード</h3>
+          <p>
+            <input type="file" name="file" />
+            <input type="submit" value="Upload" class="btn btn-secondry" />
+          </p>
         </form>
-      {% for dirdisplay, dirurl in dir %}
+        {% for dirdisplay, dirurl in dir %}
         <br>
-        <i class="icon-folder-close"></i><a href={{"/artifact/"+dirpath+dirurl}}>{{dirdisplay}}<a>
-	    {% endfor %}
-      {% for filedisplay, fileurl in ls %}
+        <i class="icon-folder-close"></i>
+        <a href={{"/artifact/"+dirpath+dirurl}}>{{dirdisplay}}</a>
+        {% endfor %}
+        {% for filedisplay, fileurl in ls %}
         <br>
-        <i class="icon-file"></i><a href={{"/view_file/"+dirpath+fileurl}} target="_blank">{{filedisplay}}<a>
-      {% endfor %}
-    </div>
+        <i class="icon-file"></i>
+        <a href={{"/view_file/" + dirpath + fileurl}} target="_blank">{{filedisplay}}</a>
+        {% endfor %}
+      </div>
     </div>
   </div>
 {% endblock %}

@@ -26,9 +26,9 @@
     $("#goal").css("color", "#888");
   });
 </script>
-  <div Class="style">
+  <div class="style">
     <div id="tabnavi">
-      <div Class="size">
+      <div class="size">
         <div id="move_tab">
           <ul>
             <li class="tab tab-unsel"><a href="/">&nbsp;&nbsp;&nbsp;トップ&nbsp;&nbsp;&nbsp;</a></li>
@@ -45,30 +45,31 @@
       <div class="diary">
         <h4>■個人日誌</h4>
         <form method="post" action="">
-        <div class="input_diary">
-          <textarea name="item_log_text" required></textarea>
-          <h5>ゴールを選択</h5>
-          <div class="accordion" id="accordion2">
-            {% if goal_texts != None%}
-            {% for goal_text in goal_texts %}
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#{{ goal_text[0].title }}">
-                  <div class="sankaku">▶</div>{{ goal_text[0].title }}
-                </a>
-              </div>
+          <div class="input_diary">
+            <textarea name="item_log_text" required></textarea>
+            <h5>ゴールを選択</h5>
+            <div class="accordion" id="accordion2">
+              {% if goal_texts != None%}
+              {% for goal_text in goal_texts %}
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#{{ goal_text[0].title }}">
+                    <div class="sankaku">▶</div>{{ goal_text[0].title }}
+                  </a>
+                </div>
                 <div id="{{ goal_text[0].title }}" class="accordion-body collapse">
-                <div class="accordion-inner">
-                  <ul>
-                    {% for goalitem_text in goal_text[1] %}
-                    <li><input type="radio" name="goal_item_title" value="{{ goalitem_text.title }}" required>{{ goalitem_text.title }}</li>
-                    {% endfor %}
-                  </ul>
+                  <div class="accordion-inner">
+                    <ul>
+                      {% for goalitem_text in goal_text[1] %}
+                      <li><input type="radio" name="goal_item_title" value="{{ goalitem_text.title }}" required>{{ goalitem_text.title }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
                 </div>
               </div>
+              {% endfor %}
+              {% endif %}
             </div>
-            {% endfor %}
-            {% endif %}
           </div>
           <div align="right">
             <input type="submit" value="入力" class="btn btn-primary" style="margin-top: -2em;">
