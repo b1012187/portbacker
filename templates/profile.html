@@ -51,8 +51,8 @@
           <br>
           <input type="text" name="pass_text" style="width:100px;">
           -->
-          学年&emsp;<SELECT name="grade" id="grade">
-            <OPTION value="0">学年</OPTION>
+          学年&emsp;<SELECT name="grade" id="grade" required>
+            <OPTION></OPTION>
             <OPTION value="1">B1</OPTION>
             <OPTION value="2">B2</OPTION>
             <OPTION value="3">B3</OPTION>
@@ -62,8 +62,8 @@
             <OPTION value="7">未配属</OPTION>
           </SELECT>
           <br>
-          所属&emsp;<SELECT name="course" id="course">
-            <OPTION value="0">所属</OPTION>
+          所属&emsp;<SELECT name="course" id="course" required>
+            <OPTION></OPTION>
             <OPTION value="1">情報システムコース</OPTION>
             <OPTION value="2">情報デザインコース</OPTION>
             <OPTION value="3">複雑系知能コース</OPTION>
@@ -80,21 +80,8 @@
 </div>
 <script>
 $(function() {
-  $('#grade > option').css("color", "#000");
-  var g = $('#grade');
-  g.val({{grade_index}});
-  g.css("color", {{grade_index}} == 0 ? "#f00" : "#000");
-  g.change(function() {
-    $(this).css("color", $(this).val() == 0 ? "#f00" : "#000");
-  });
-
-  $('#course > option').css("color", "#000");
-  var c = $('#course');
-  c.val({{course_index}});
-  c.css("color", {{course_index}} == 0 ? "#f00" : "#000");
-  c.change(function() {
-    $(this).css("color", $(this).val() == 0 ? "#f00" : "#000");
-  });
+  $('#grade').val({{grade_index}});
+  $('#course').val({{course_index}});
 });
 </script>
 {% endblock %}
