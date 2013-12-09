@@ -369,10 +369,7 @@ def setting_profile():
     uobj = model.User(name, session.get('username'), None, COURSE[int(course)], GRADE[int(grade)])
     uobj.update(model.db)
     session['displayname'] = uobj.name if uobj.name else None
-    if show_tabs:
-        return render_profile_page_with_user_obj(uid, uobj)
-    else:
-        return redirect("/")
+    return redirect("/")
 
 @app.errorhandler(404)
 def page_not_found(error):
