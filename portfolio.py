@@ -144,7 +144,6 @@ def get_goal():
         goal_items = model.GoalItem.get(model.db, username, goal.title)
         goal_texts.append([goal, goal_items])
         for text in goal_items:
-            sys.stderr.write("%s\n" % text.change_data[-1])
     return render_template_with_username("goal.html", goal_texts= goal_texts)
 
 # goal_textの内容を受け取ってgoal.htmlに渡す 菅野：テキストは渡さないでgoal.htmlからdbにアクセスできるようにしました
