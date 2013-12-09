@@ -468,6 +468,10 @@ li.tab-selected a {
 li.tab-unsel a {
 	color: #fff;
 }
+li.tab-special {
+	color: #666;
+	background-color: #dcdcdc;
+}
 
 /*その場しのぎしてます*/
 #move_tab {
