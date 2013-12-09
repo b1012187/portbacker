@@ -173,7 +173,7 @@ def edit_goal_item():
         itemc.change_data.append({"datetime": datetime.datetime.today(), "state": not itemc.change_data[-1]["state"]})
         itemc.update(model.db)
     elif request.form["edit_button"] == u"削除":
-        item = request.form.getlist["goal_item_title"]
+        item = request.form["goal_item_title"]
         model.GoalItem.remove(model.db, username, goal_title, item)
     return redirect('/goal')
 
